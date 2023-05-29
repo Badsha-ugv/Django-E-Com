@@ -14,7 +14,10 @@ class CartItem(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart,on_delete=models.CASCADE)
     quantity = models.IntegerField()
-    is_avtive = models.BooleanField(default=True) 
+    is_active = models.BooleanField(default=True) 
+
+    def subtotal(self):
+        return self.product.price * self.quantity
 
     def __str__(self):
-        return self.product
+        return self.product.name
